@@ -74,8 +74,26 @@ function isLeapYear(date) {
  *    Date(2000,1,1,10,0,0),  Date(2000,1,1,10,0,0,250)     => "00:00:00.250"
  *    Date(2000,1,1,10,0,0),  Date(2000,1,1,15,20,10,453)   => "05:20:10.453"
  */
-function timeSpanToString(/* startDate, endDate */) {
-  throw new Error('Not implemented');
+function timeSpanToString(startDate, endDate) {
+  const date1 = new Date(startDate);
+  const date2 = new Date(endDate);
+  const hour = date2.getHours() - date1.getHours();
+  let strH;
+  if (hour < 10) strH = `0${hour}`;
+  else strH = hour;
+  const min = date2.getMinutes() - date1.getMinutes();
+  let strM;
+  if (min < 10) strM = `0${min}`;
+  else strM = min;
+  const sec = date2.getSeconds() - date1.getSeconds();
+  let strS;
+  if (sec < 10) strS = `0${sec}`;
+  else strS = sec;
+  const ms = date2.getMilliseconds() - date1.getMilliseconds();
+  let strMs;
+  if (ms < 10) strMs = `00${ms}`;
+  else strMs = ms;
+  return `${strH}:${strM}:${strS}.${strMs}`;
 }
 
 
@@ -94,6 +112,18 @@ function timeSpanToString(/* startDate, endDate */) {
  *    Date.UTC(2016,3,5,21, 0) => Math.PI/2
  */
 function angleBetweenClockHands(/* date */) {
+  /* const d = new Date(date);
+  let h = d.getHours();
+  const m = d.getMinutes();
+  h = h > 11 ? h - 12 : h;
+  const mAng = (2 * Math.PI) * (m / 60);
+  const hAng = (2 * Math.PI) * ((h / 12) + ((m / 60) * (1 / 12)));
+  const max = Math.max(hAng, mAng);
+  const min = Math.min(hAng, mAng);
+
+  const angles = [max - min, (Math.PI * 2) - (max - min)];
+
+  return Math.min(...angles); */
   throw new Error('Not implemented');
 }
 
